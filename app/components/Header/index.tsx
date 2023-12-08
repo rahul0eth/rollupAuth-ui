@@ -1,27 +1,15 @@
+"use client"
 
 import Link from 'next/link';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 const Header = () => {
+
   return (
-    <header>
-      <nav>
-        <ul>
-          <li>
-            <Link href="/">
-              <a>Home</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/about">
-              <a>About</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/contact">
-              <a>Contact</a>
-            </Link>
-          </li>
-        </ul>
+    <header className=''>
+      <nav className='flex justify-between items-center max-w-7xl p-4'>
+        <Link href="/"> rollupAuth </Link>
+        <ConnectButton />
       </nav>
     </header>
   );

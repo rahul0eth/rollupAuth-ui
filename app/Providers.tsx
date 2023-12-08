@@ -1,3 +1,7 @@
+"use client"
+
+import React from 'react';
+
 import '@rainbow-me/rainbowkit/styles.css';
 import {
   getDefaultWallets,
@@ -32,4 +36,16 @@ const wagmiConfig = createConfig({
   connectors,
   publicClient
 })
+
+export default function Providers({ children }: { children: React.ReactNode }) {
+    const [mounted, setMounted] = React.useState(false);
+    React.useEffect(() => setMounted(true), []);
+    return (
+      <WagmiConfig config={wagmiConfig}>
+        <RainbowKitProvider chains={chains} >
+          {mounted && children}
+        </RainbowKitProvider>
+      </WagmiConfig>
+    );
+  }
 
