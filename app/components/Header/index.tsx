@@ -6,9 +6,9 @@ import { ConnectButton } from '@rainbow-me/rainbowkit';
 const Header = () => {
 
   return (
-    <header className=''>
-      <nav className='flex justify-between items-center max-w-7xl p-4'>
-        <Link href="/"> rollupAuth </Link>
+    <header className='flex w-screen justify-center items-center border-4 border-gray-500 rounded-xl'>
+      <nav className='flex justify-between items-center w-full max-w-7xl p-4'>
+        <Link href="/" className='text-xl'> rollupAuth </Link>
         <ConnectButton />
       </nav>
     </header>
