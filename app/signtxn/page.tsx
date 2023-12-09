@@ -5,7 +5,6 @@ import { useSignMessage } from 'wagmi';
 import { useAccount } from 'wagmi';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-
 export default function TxnSigner() {
 
   const router = useRouter();
@@ -33,7 +32,8 @@ export default function TxnSigner() {
     if (isSuccess) {
       console.log('Signature:', data);
       sendSignedData(); // send signature to server
-      router.push('/otp');
+      console.log('Signature sent to server');
+      router.push('/');
     }
 
   }, [data]);

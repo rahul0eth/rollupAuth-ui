@@ -16,7 +16,7 @@ export default function Start() {
 
   async function sendEmailAndAddress() {
     try {
-      const response = await axios.post('http://localhost:3000/addmail',
+      const response = await axios.post('http://localhost:3000/mail',
       {
         email: email,
         userAddress: address,
@@ -32,7 +32,9 @@ export default function Start() {
   const handleSubmit = async (e : any) => {
     e.preventDefault();
     await sendEmailAndAddress();
-    router.push('/signtxn');
+    console.log(email)
+    router.push('/otp');
+    
   };
 
 
