@@ -58,7 +58,7 @@ export default function Home() {
               id="otp" 
               placeholder='696969' 
               onChange={(e) => {setOtp(e.target.value as any)}} 
-              maxLength="6"
+              maxLength={6}
             />
           </div>
           <div><button className='p-2 w-32 bg-blue-500 font-bold rounded-xl' type='submit'>Submit</button></div>
