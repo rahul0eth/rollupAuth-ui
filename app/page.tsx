@@ -20,8 +20,9 @@ export default function Home() {
   const [emailSubmitted, setEmailSubmitted] = React.useState<boolean>(false);
   const [otpSubmitted, setOtpSubmitted] = React.useState<boolean>(false);
   const [trxIn, setTrxIn] = React.useState<boolean>(false);
-
+  const [com,setCom] = React.useState<boolean>(false);
   const[otp, setOtp] = React.useState<number>(0);
+  const [pack,setPack] = React.useState<boolean>(false);
 
   useEffect(() => {
     if (address) {
@@ -129,24 +130,28 @@ export default function Home() {
     
     console.log(payload);
 
-    try {
-    const response = await axios.post('http://localhost:3000/', {payload:payload});
-    console.log(response);
-    } catch(error){
-      console.error('Failed to send OTP:', error);
-    }
+    // try {
+    // const response = await axios.post('http://localhost:3000/', {payload:payload});
+    // console.log(response);
+    // } catch(error){
+    //   console.error('Failed to send OTP:', error);
+    // }
   }
 
   async function handleSubmitOtp(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     // await sendOTP();
-    setTrxIn(true);
+    // setTrxIn(false);
+    await sendEmailAndAddress();
+    setPack(true);
+    setOtpSubmitted(true);
     console.log('Transction Submitted.');
   }
 
   async function handleSignTxn(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     await sendOTP();
+    setCom(true);
     console.log('Signed txn.');
   }
 
@@ -181,7 +186,7 @@ export default function Home() {
           <button className='p-2 m-4 w-32 bg-blue-500 font-bold' type='submit'>Submit</button>
         </form>
       }
-      { isConnected && emailSubmitted && trxIn &&
+      { isConnected && emailSubmitted && trxIn && !pack &&
       <div className='flex flex-col fadein justify-center items-center m-40'>
         <form className='flex flex-col justify-center items-center space-y-4' onSubmit={(e) => handleSubmitOtp(e)}>
           <p>{oEmail}</p>
@@ -207,7 +212,7 @@ export default function Home() {
       </div>
       }
 
-      { isConnected && emailSubmitted && otpSubmitted &&
+      { isConnected && emailSubmitted && otpSubmitted && !com &&
       <div className='flex flex-col fadein justify-center items-center m-40'>
         <form className='flex flex-col justify-center items-center space-y-4' onSubmit={(e) => handleSignTxn(e)}>
           <div className='flex justify-center items-center space-x-4 p-4'>
@@ -223,6 +228,10 @@ export default function Home() {
           <button className='p-2 w-32 bg-blue-500 font-bold' type='submit'>sign txn</button>
         </form>
       </div> }
+
+      {com && <div className='bg-green-500 absolute fadein h-[100vh] w-[100vw] top-0 p-4 z-20 flex justify-center items-center flex-col'> 
+          <p className='text-4xl'>Transaction Signed!</p>
+      </div>}
 
     </main>
     </div>
