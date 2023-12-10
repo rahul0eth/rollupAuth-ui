@@ -2,8 +2,8 @@
 export const domain = {
   name: "Stackr MVP v0",
   version: "1",
-  chainId: 42069,
-  verifyingContract: "0x3f92b3a9c7d32689467ce6790aeb692307c9146e",
+  chainId: 69420,
+  verifyingContract: "0x6a681d40fabaf0db36291b49b8a53250d768533e",
   salt: "0x0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
 } as const
 
@@ -15,7 +15,7 @@ export const otpMock = {
     }, 
     {
       name: "otp",
-      type: "uint32",
+      type: "uint256",
     }
   ],
 } as const
